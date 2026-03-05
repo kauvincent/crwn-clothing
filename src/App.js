@@ -76,7 +76,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = user =>({
+const mapStateToProps = ({user}) =>({
   currentUser: user.currentUser
 })
 

@@ -1,26 +1,28 @@
 import { cartActionTypes } from "./cart-types";
 import { addItemsToCart } from "./cart.utils";
+
 const INITIAL_STATE = {
     hidden: true,
-    CartItems: []
-}
+    cartItems: [] // ✅ use correct camelCase
+};
 
-const CartReducer = (state = INITIAL_STATE, action) => {
-    switch(action.type){
+const cartReducer = (state = INITIAL_STATE, action) => {
+    switch (action.type) {
         case cartActionTypes.TOGGLE_CART_HIDDEN:
-            return{
+            return {
                 ...state,
-            hidden: !state.hidden
-        }
-            default:
-        return state;
+                hidden: !state.hidden
+            };
 
         case cartActionTypes.ADD_ITEM:
-            return{
+            return {
                 ...state,
-                CartItems: addItemsToCart(state.CartItemsaction.payload)
-            }
-    }
-}
+                cartItems: addItemsToCart(state.cartItems, action.payload) // ✅ fixed syntax
+            };
 
-export default CartReducer;
+        default:
+            return state;
+    }
+};
+
+export default cartReducer;
